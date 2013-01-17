@@ -1,0 +1,38 @@
+@(title: String)(model:Landing)
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@title</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/shopyourway-styleguide.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.ico")">
+    <script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+</head>
+<body>
+<h1>@title</h1>
+
+@if(model.displayProperConfigurationMessage()) {
+<div class="error">
+    <h3>WAIT - before you start</h3>
+    <ul>
+        <li>Register a new application in <a href="http://galileo.shopyourway.com/app/control-panel" target="_blank">ShopYourWay Sandbox environment</a></li>
+        <li>After the application is registered successfully, you will get an app id and app secret (to use for accessing the <a href="http://platform.shopyourway.com" target="_blank">ShopYourWay Platform APIs</a>)</li>
+        <li>Set the app id and app secret in the application.conf file in the conf (<span class="bold">shopyourway.appid</span> key and <span class="bold">shopyourway.secret</span> key)</li>
+        <li>Go to <span class="bold">http://galileo.shopyourway.com/app/{Your app id Here}/l</span> and watch the magic happens...</li>
+    </ul>
+</div>
+} else {
+<h3>Congratulations! Your application is now configured.</h3>
+<p>You can now view <a href="@model.getLandingPageUrl()" target="_top">your ShopYourWay application landing page</a> on the ShopYourWay site.</p>
+<p>You can also <a href="@model.getLoginPageUrl()" target="_top">enable the application for your user</a>.</p>
+}
+<h3>About this application</h3>
+<p>This is a wire-frame for an application which includes the basic elements you need in order to start developing an application using the ShopYourWay Platform.</p>
+<p>Documentation on how to build an application is available at <a href="http://developer.shopyourway.com" target="_blank">ShopYourWay Developers site</a></p>
+<p>This application contains basic MVC architecture and platform APIs access</p>
+<p>Canvas is available at http://base-app-url/landing</p>
+
+</body>
+</html>
